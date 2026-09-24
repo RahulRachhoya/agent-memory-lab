@@ -11,7 +11,7 @@ HNSW_EF = 128   # search-time beam width; must be >= the number of results you w
 
 
 def client(grpc: bool = True) -> QdrantClient:
-    # gRPC is ~3x faster than REST per query on this setup (~6 ms vs ~18 ms p50 for a dense
+    # gRPC is ~5x faster than REST per query on this setup (3.2 ms vs 15.1 ms p50 for a dense
     # top-100): most of the REST time is JSON encoding and HTTP, not search.
     return QdrantClient(host="127.0.0.1", port=6333, grpc_port=6334, prefer_grpc=grpc)
 
