@@ -37,6 +37,12 @@ with reciprocal rank fusion (k=60); both HNSW indexes search with ef=128.
 The last three rows are references: exact (brute-force) search in each store, and the same Qdrant
 dense query over REST instead of gRPC.
 
+The Qdrant hybrid figure carries about ±0.004 of noise. RRF produces exact score ties and Qdrant
+breaks them arbitrarily: repeating identical hybrid requests reordered the top 10 for 49 of the
+300 queries, and nDCG@10 ranged from 0.720 to 0.728
+([measured in ai-sdk-research-agent](https://github.com/RahulRachhoya/ai-sdk-research-agent#retrieval-parity-with-the-python-reference)).
+It doesn't change the ranking of methods.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/charts/latency-dark.png">
   <img alt="Quality vs latency" src="docs/charts/latency-light.png">
